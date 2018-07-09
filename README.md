@@ -1,0 +1,1 @@
+A simple app for fetching lottery data into an API.
