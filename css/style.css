@@ -1,0 +1,38 @@
+[data-raffle-number],
+[data-lottery],
+[data-btn] {
+	height: 30px;
+	width: 150px;
+	box-sizing: border-box;
+	border-radius: 10px;
+	border: 1px solid lightgrey;
+}
+
+select {
+	padding-left: 20px;
+}
+
+[data-raffle-number] {
+	text-align: center;
+}
+
+[data-raffle-number],
+[data-btn],
+select {
+	font-size: 1em;
+	outline: 0;
+}
+
+[data-informations],
+[data-latest-raffles-searched] {
+	width: 49.5%;
+	float: left;
+}
+
+[data-informations] {
+	margin: 20px 0 0 0;
+}
+
+[data-btn] {
+	cursor: pointer;
+}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8">
+		<title>Lotteries</title>
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+		<div data-informations>
+			<form method="POST">
+				<select data-lottery>
+					<option value="mega-sena">Mega-Sena</option>
+					<option value="quina">Quina</option>
+				</select>
+				<input type="text" data-raffle-number placeholder="Número do sorteio">
+				<input type="submit" data-btn value="Buscar sorteio">
+			</form>
+		</div>
+		<div data-latest-raffles-searched>
+			<h2>Últimos sorteios pesquisados</h2>
+			<div data-latest-raffles></div>
+		</div>
+		<script src="js/script.js"></script>
+	</body>
+</html>
