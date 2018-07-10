@@ -102,7 +102,7 @@
 				<tr>
 					<td>${lotteryName}</td>
 					<td>${response.concurso.data}</td>
-					<td>${response.concurso.dezenas.join(' - ')}</td>
+					<td>${generateSpans(response.concurso.dezenas, lotteryName.toLowerCase())}</td>
 				</tr>
 			</table>`
 
@@ -114,6 +114,14 @@
 			'quina': 'Quina'
 		}
 		return lotteries[lotteryName]
+	}
+
+	function generateSpans(dozens, className) {
+		let content = ''
+		dozens.forEach(number => {
+			content += `<span class="${className}">${number}</span>`
+		})
+		return content
 	}
 
 	setContentLatestRaffles()
