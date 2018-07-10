@@ -9,16 +9,6 @@
 	raffleNumber.addEventListener('keydown', preventActionOnInput)
 	btn.addEventListener('click', preventActionOnBtn)
 
-	function getNumberOfRafflesSearched() {
-		return localStorage.getItem('numberOfRafflesSearched')
-	}
-
-	function setContentLatestRaffles() {
-		if(!getNumberOfRafflesSearched()) {
-			latestRaffles.textContent = 'Você não procurou nenhum sorteio ainda'
-		}
-	}
-
 	function preventActionOnInput(event) {
 		if(event.keyCode != 8) {
 			if(verifyAllowedKeys(allowedKeys(), event.keyCode) || checkInputLength()) {
@@ -50,11 +40,20 @@
 	function searchLotteryRaffle() {
 		if(raffleNumber.value.length > 0) {
 			switch(lotteryName.value) {
-				case 'mega-sena':
+				case 'megasena':
 					makeAjaxRequest('megasena')
 					break
 				case 'quina':
 					makeAjaxRequest('quina')
+					break
+				case 'lotofacil':
+					makeAjaxRequest('lotofacil')
+					break
+				case 'lotomania':
+					makeAjaxRequest('lotomania')
+					break
+				case 'timemania':
+					makeAjaxRequest('timemania')
 					break
 			}
 		}
@@ -63,7 +62,7 @@
 	function makeAjaxRequest(lotteryName) {
 		const raffleNumberValue = raffleNumber.value
 		const response = new XMLHttpRequest()
-		response.open('GET', formatUrl(lotteryName, raffleNumberValue))
+		response.open('GET', formatUrl(lotteryName, raffleNumberValue, 'PfU4zXNeTayaPXI'))
 		response.send()
 		response.addEventListener('readystatechange', function() {
 			if(response.readyState === 4 && response.status === 200) {
@@ -78,8 +77,9 @@
 		cleanFields()
 	}
 
-	function formatUrl(lotteryName, raffleNumberValue) {
-		return `http://confiraloterias.com.br/api0/json.php?loteria=${lotteryName}&token=hGl8DAQp3Ayj1YJ&concurso=${raffleNumberValue}`
+	function formatUrl(lottery, raffleNumber, token) {
+		const url = 'http://confiraloterias.com.br/api0/json.php?'
+		return `${url}loteria=${lottery}&token=${token}&concurso=${raffleNumber}`
 	}
 
 	function changeDozensContent(content) {
@@ -111,7 +111,10 @@
 	function generateLotteryName(lotteryName) {
 		const lotteries = {
 			'megasena': 'Mega-Sena',
-			'quina': 'Quina'
+			'quina': 'Quina',
+			'lotofacil': 'Lotofácil',
+			'lotomania': 'Lotomania',
+			'timemania': 'Timemania'
 		}
 		return lotteries[lotteryName]
 	}

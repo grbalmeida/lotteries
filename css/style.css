@@ -24,17 +24,12 @@ select {
 	outline: 0;
 }
 
-[data-informations],
-[data-latest-raffles-searched] {
-	width: 49.5%;
-	float: left;
-}
-
 [data-informations] {
 	margin: 20px 0 0 0;
 }
 
-[data-btn] {
+[data-btn],
+select {
 	cursor: pointer;
 }
 
@@ -47,7 +42,10 @@ table {
 }
 
 .mega-sena,
-.quina {
+.quina,
+.lotofácil,
+.lotomania,
+.timemania {
 	display: inline-block;
 	width: 30px;
 	height: 30px;
@@ -65,4 +63,33 @@ table {
 
 .quina {
 	background-color: #260085;
+}
+
+.timemania {
+	background-color: #00ff48;
+}
+
+.lotofácil {
+	background-color: #930089;
+}
+
+.lotomania {
+	background-color: #f78100;
+}
+
+table, 
+tr, 
+td,
+th {
+	border: 1px solid lightgrey;
+	border-collapse: collapse;
+} 
+
+td {
+	padding: 10px 0;
+}
+
+tr,
+th {
+	font-size: 1.1em;
 }
