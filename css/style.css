@@ -12,7 +12,8 @@ select {
 	padding-left: 20px;
 }
 
-[data-raffle-number] {
+[data-raffle-number],
+td {
 	text-align: center;
 }
 
@@ -35,4 +36,12 @@ select {
 
 [data-btn] {
 	cursor: pointer;
+}
+
+form {
+	margin-bottom: 20px;
+}
+
+table {
+	width: 100%;
 }

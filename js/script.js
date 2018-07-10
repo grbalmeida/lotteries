@@ -4,6 +4,7 @@
 	const raffleNumber = document.querySelector('[data-raffle-number]')
 	const btn = document.querySelector('[data-btn]')
 	const lotteryName = document.querySelector('[data-lottery]')
+	const dozens = document.querySelector('[data-dozens]')
 
 	raffleNumber.addEventListener('keydown', preventActionOnInput)
 	btn.addEventListener('click', preventActionOnBtn)
@@ -66,13 +67,53 @@
 		response.send()
 		response.addEventListener('readystatechange', function() {
 			if(response.readyState === 4 && response.status === 200) {
-				console.log(response.responseText)
+				const responseDataRequest = JSON.parse(response.responseText)
+				if(responseDataRequest.erro) {
+					changeDozensContent('Concurso não encontrado')
+				} else {
+					generateTableWithDozens(responseDataRequest, generateLotteryName(lotteryName))
+				}
 			}
 		})
+		cleanFields()
 	}
 
 	function formatUrl(lotteryName, raffleNumberValue) {
-		return `http://confiraloterias.com.br/api0/json.php?loteria=${lotteryName}&token=VoKOwTa6Sp43g34&concurso=${raffleNumberValue}`
+		return `http://confiraloterias.com.br/api0/json.php?loteria=${lotteryName}&token=hGl8DAQp3Ayj1YJ&concurso=${raffleNumberValue}`
+	}
+
+	function changeDozensContent(content) {
+		dozens.textContent = content
+	}
+
+	function cleanFields() {
+		raffleNumber.value = ''
+		raffleNumber.focus()
+	}
+
+	function generateTableWithDozens(response, lotteryName) {
+		dozens.innerHTML = 
+			`<table>
+				<tr>
+					<th>Loteria</th>
+					<th>Data do sorteio</th>
+					<th>Dezenas</th>
+				</tr>
+				<tr>
+					<td>${lotteryName}</td>
+					<td>${response.concurso.data}</td>
+					<td>${response.concurso.dezenas.join(' - ')}</td>
+				</tr>
+			</table>`
+
+	}
+
+	function generateLotteryName(lotteryName) {
+		const lotteries = {
+			'megasena': 'Mega-Sena',
+			'quina': 'Quina'
+		}
+		return lotteries[lotteryName]
 	}
 
 	setContentLatestRaffles()
