@@ -127,6 +127,4 @@
 		return content
 	}
 
-	setContentLatestRaffles()
-
 })()
