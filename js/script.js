@@ -25,17 +25,11 @@
 		searchLotteryRaffle()
 	}
 
-	function allowedKeys() {
-		return [13, 37, 39, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57]
-	}
+	const allowedKeys = () => [13, 37, 39, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57]
 
-	function verifyAllowedKeys(keys, event) {
-		return keys.indexOf(event) == -1
-	}
+	const verifyAllowedKeys = (keys, event) => keys.indexOf(event) == -1
 
-	function checkInputLength() {
-		return raffleNumber.value.length == 4
-	}
+	const checkInputLength = () => raffleNumber.value.length == 4
 
 	function searchLotteryRaffle() {
 		if(raffleNumber.value.length > 0) {
@@ -62,7 +56,7 @@
 	function makeAjaxRequest(lotteryName) {
 		const raffleNumberValue = raffleNumber.value
 		const response = new XMLHttpRequest()
-		response.open('GET', formatUrl(lotteryName, raffleNumberValue, 'PfU4zXNeTayaPXI'))
+		response.open('GET', formatUrl(lotteryName, raffleNumberValue, 'Tinpp5CfpJPp7zL'))
 		response.send()
 		response.addEventListener('readystatechange', function() {
 			if(response.readyState === 4 && response.status === 200) {
@@ -82,9 +76,7 @@
 		return `${url}loteria=${lottery}&token=${token}&concurso=${raffleNumber}`
 	}
 
-	function changeDozensContent(content) {
-		dozens.textContent = content
-	}
+	const changeDozensContent = content => dozens.textContent = content
 
 	function cleanFields() {
 		raffleNumber.value = ''
