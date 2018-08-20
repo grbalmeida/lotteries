@@ -31,24 +31,14 @@
 
 	const checkInputLength = () => raffleNumber.value.length == 4
 
+	const lotteriesList = new Set(
+		['megasena', 'quina', 'lotofacil', 'lotomania', 'timemania']
+	)
+
 	function searchLotteryRaffle() {
 		if(raffleNumber.value.length > 0) {
-			switch(lotteryName.value) {
-				case 'megasena':
-					makeAjaxRequest('megasena')
-					break
-				case 'quina':
-					makeAjaxRequest('quina')
-					break
-				case 'lotofacil':
-					makeAjaxRequest('lotofacil')
-					break
-				case 'lotomania':
-					makeAjaxRequest('lotomania')
-					break
-				case 'timemania':
-					makeAjaxRequest('timemania')
-					break
+			if(lotteriesList.has(lotteryName.value)) {
+				makeAjaxRequest(lotteryName.value)
 			}
 		}
 	}
